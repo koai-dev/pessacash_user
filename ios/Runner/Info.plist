@@ -32,6 +32,8 @@
 	<string>This app requires access to the camera to upload customer profile picture.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>User can send money from their phone contact number, and request for request money</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>User can fast login without pin</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires access to the gallery to upload customer profile picture.</string>
 	<key>UIBackgroundModes</key>
@@ -58,9 +60,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSContactsUsageDescription</key>
-    <string>User can send money from their phone contact number, and request for request money</string>
-    <key>NSFaceIDUsageDescription</key>
-    <string>User can fast login without pin</string>
 </dict>
 </plist>

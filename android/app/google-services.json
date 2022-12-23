@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:156714686968:android:989ea3097305bbaae19e0d",
+        "android_client_info": {
+          "package_name": "com.rbpessacash.agent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxPbwGxN5nltmGTRQMGuRJvQoEv15RM6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "156714686968-fs9indkf40u445lc282lvlijattlcp1j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixamtech.cash"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:156714686968:android:edcd622818fff798e19e0d",
         "android_client_info": {
           "package_name": "com.rbpessacash.user"
@@ -29,6 +65,13 @@
             {
               "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "156714686968-fs9indkf40u445lc282lvlijattlcp1j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixamtech.cash"
+              }
             }
           ]
         }

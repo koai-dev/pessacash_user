@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "156714686968-fs9indkf40u445lc282lvlijattlcp1j.apps.googleusercontent.com",
+              "client_id": "156714686968-1bbs4fa85h2cg4ou3t6u9ud8n5bs35ke.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.cash"
+                "bundle_id": "com.rbpessacash.user"
               }
             }
           ]
@@ -67,10 +67,10 @@
               "client_type": 3
             },
             {
-              "client_id": "156714686968-fs9indkf40u445lc282lvlijattlcp1j.apps.googleusercontent.com",
+              "client_id": "156714686968-1bbs4fa85h2cg4ou3t6u9ud8n5bs35ke.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.cash"
+                "bundle_id": "com.rbpessacash.user"
               }
             }
           ]

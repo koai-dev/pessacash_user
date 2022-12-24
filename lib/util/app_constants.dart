@@ -8,7 +8,7 @@ class AppConstants {
   static const String APP_NAME = 'RBPESSACASH';
   //demo
 
-  static const String BASE_URL = 'https://rbpessacash.com';
+  static const String BASE_URL = 'http://rbpessacash.com';
   // //fun
   // static const String BASE_URL = 'https://6cash-admin.6am.fun';
   static const bool DEMO = true;
@@ -106,8 +106,9 @@ class AppConstants {
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: Images.english, languageName: 'English', countryCode: 'US', languageCode: 'en'),
     LanguageModel(imageUrl: Images.saudi, languageName: 'Arabic', countryCode: 'SA', languageCode: 'ar'),
-    LanguageModel(imageUrl: Images.burundi, languageName: 'Ikirundi', countryCode: 'BI', languageCode: 'rn'),
-    LanguageModel(imageUrl: Images.ghana, languageName: 'Swahili', countryCode: 'TZ', languageCode: 'sw'),
+    LanguageModel(imageUrl: Images.burundi, languageName: 'Burundi', countryCode: 'BI', languageCode: 'rn'),
+    LanguageModel(imageUrl: Images.ghana, languageName: 'Ghana', countryCode: 'GH', languageCode: 'sw'),
+
   ];
 
   static  List<OnboardModel> onboardList = [

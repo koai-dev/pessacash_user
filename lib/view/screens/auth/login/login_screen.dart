@@ -1,4 +1,4 @@
-import 'package:country_code_picker/country_code_picker.dart';
+import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -385,7 +385,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   }
 
   Future<void> _login(BuildContext context) async {
-    Get.find<Menu2Controller>().resetNavBar();
+    Get.find<MenuController>().resetNavBar();
     String _code = _countryCode;
     String _phone = phoneController.text.trim();
     String _password = passwordController.text.trim();

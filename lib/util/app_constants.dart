@@ -8,7 +8,7 @@ class AppConstants {
   static const String APP_NAME = 'RBPESSACASH';
   //demo
 
-  static const String BASE_URL = 'http://rbpessacash.com';
+  static const String BASE_URL = 'https://rbpessacash.com';
   // //fun
   // static const String BASE_URL = 'https://6cash-admin.6am.fun';
   static const bool DEMO = true;

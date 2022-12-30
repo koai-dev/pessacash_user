@@ -58,7 +58,7 @@ android {
         applicationId "com.rbpessacash.user"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 4
+        versionCode 5
         versionName "1.0.0"
         multiDexEnabled true
     }

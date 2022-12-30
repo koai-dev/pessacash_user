@@ -21,7 +21,7 @@ class ContactView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    if(contactController.permissionStatus == PermissionStatus.denied) {
+    if(contactController.permissionStatus != PermissionStatus.granted) {
       return Column( children: [
         FittedBox( child: InkWell(
            onTap: ()=> contactController.fetchContact(),

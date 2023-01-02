@@ -39,10 +39,10 @@ class ConfigModel {
   BaseUrls baseUrls;
   String currencySymbol;
   String currencyPosition;
-  int cashOutChargePercent;
-  int addMoneyChargePercent;
+  double cashOutChargePercent;
+  double addMoneyChargePercent;
   int sendMoneyChargeFlat;
-  int agentCommissionPercent;
+  double agentCommissionPercent;
   int adminCommission;
   bool twoFactor;
   bool phoneVerification;

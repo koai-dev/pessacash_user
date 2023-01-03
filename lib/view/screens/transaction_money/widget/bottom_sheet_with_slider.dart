@@ -53,18 +53,18 @@ class _BottomSheetWithSliderState extends State<BottomSheetWithSlider> {
       if (widget.transactionType == "request_money") {
         final amount = PriceConverter.newBalanceWithCredit(
             inputBalance: double.parse(widget.amount));
-        PriceConverter.convertCurrency(double.parse(amount.substring(1)),
+        PriceConverter.convertCurrency(
+                double.parse(amount.replaceAll(RegExp('[^0-9 .]'), '')),
                 profileController.userInfo.phone)
-            .then((value) {
-          setState(() async {
-            if (value.symbol ==
-                (await PriceConverter.currencyChange(
-                        profileController.userInfo.phone))
-                    .symbol) {
-              currencyAmount =
-                  " = ${await PriceConverter.convertPrice(value.amount, profileController: profileController,isLocal: true)}";
-            }
-          });
+            .then((value) async {
+          if (value.symbol ==
+              (await PriceConverter.currencyChange(
+                      profileController.userInfo.phone))
+                  .symbol) {
+            currencyAmount =
+                " = ${await PriceConverter.convertPrice(value.amount, profileController: profileController, isLocal: true)}";
+          }
+          setState(() {});
         });
       } else if (widget.transactionType == "send_money") {
         final amount = (PriceConverter.newBalanceWithDebit(
@@ -73,39 +73,30 @@ class _BottomSheetWithSliderState extends State<BottomSheetWithSlider> {
               .configModel
               .sendMoneyChargeFlat
               .toString()),
-        ))
-            .substring(1);
+        )).replaceAll(RegExp('[^0-9 .]'), '');
+        print("Amount: $amount");
         final currency = (await PriceConverter.convertCurrency(
             double.parse(amount), profileController.userInfo.phone));
-        setState(() async {
-          // if (currency.symbol ==
-          //     (await PriceConverter.currencyChange(
-          //             profileController.userInfo.phone))
-          //         .symbol) {
-            currencyAmount = " = " +
-               await PriceConverter.convertPrice(currency.amount, profileController: profileController,isLocal: true);
-          // }
-        });
+
+        currencyAmount = " = " +
+            await PriceConverter.convertPrice(currency.amount,
+                profileController: profileController, isLocal: true);
+        setState(() {});
       } else {
         final amount = PriceConverter.newBalanceWithDebit(
-                inputBalance: double.parse(widget.amount),
-                charge: cashOutCharge,
-               )
-            .substring(1);
+          inputBalance: double.parse(widget.amount),
+          charge: cashOutCharge,
+        ).replaceAll(RegExp('[^0-9 .]'), '');
         final currency = await PriceConverter.convertCurrency(
             double.parse(amount), profileController.userInfo.phone);
-        // setState(() async {
-          if (currency.symbol ==
-              (await PriceConverter.currencyChange(
-                      profileController.userInfo.phone))
-                  .symbol) {
-            currencyAmount =
-                " ~ ${await PriceConverter.convertPrice(currency.amount, isLocal: true, profileController: profileController)}";
-          }
-        // });
-        setState(() {
-
-        });
+        if (currency.symbol ==
+            (await PriceConverter.currencyChange(
+                    profileController.userInfo.phone))
+                .symbol) {
+          currencyAmount =
+              " ~ ${await PriceConverter.convertPrice(currency.amount, isLocal: true, profileController: profileController)}";
+        }
+        setState(() {});
       }
     }
   }

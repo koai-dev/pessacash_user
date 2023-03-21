@@ -46,7 +46,7 @@ class AppBarBase extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Row(children: [
                   GestureDetector(
-                    onTap: () => Get.find<MenuController>().selectProfilePage(),
+                    onTap: () => Get.find<Menu2Controller>().selectProfilePage(),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),

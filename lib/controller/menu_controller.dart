@@ -6,7 +6,7 @@ import 'package:six_cash/view/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MenuController extends GetxController implements GetxService{
+class Menu2Controller extends GetxController implements GetxService{
   int _currentTab = 0;
   int get currentTab => _currentTab;
   final List<Widget> screen = [

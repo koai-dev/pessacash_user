@@ -32,7 +32,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   @override
   void initState() {
     super.initState();
-    Get.find<MenuController>().selectHomePage(isUpdate: false);
+    Get.find<Menu2Controller>().selectHomePage(isUpdate: false);
 
     Get.find<AuthController>().checkBiometricWithPin();
 
@@ -64,7 +64,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
           onWillPop: () => _onWillPop(context),
-          child: GetBuilder<MenuController>(builder: (menuController) {
+          child: GetBuilder<Menu2Controller>(builder: (menuController) {
             return Scaffold(
               backgroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
               body: PageStorage(bucket: bucket, child: menuController.currentScreen),
@@ -129,12 +129,12 @@ class _NavBarScreenState extends State<NavBarScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(height: Dimensions.NAVBAR_ICON_SIZE, width: Dimensions.NAVBAR_ICON_SIZE,
-            child: Image.asset(icon, fit: BoxFit.contain, color: Get.find<MenuController>().currentTab == selectIndex
+            child: Image.asset(icon, fit: BoxFit.contain, color: Get.find<Menu2Controller>().currentTab == selectIndex
                   ? Theme.of(context).textTheme.titleLarge.color : ColorResources.nevDefaultColor,
             ),
           ),
           const SizedBox(height: 6.0),
-          Text(name, style: TextStyle(color: Get.find<MenuController>().currentTab == selectIndex
+          Text(name, style: TextStyle(color: Get.find<Menu2Controller>().currentTab == selectIndex
               ? Theme.of(context).textTheme.titleLarge.color : ColorResources.nevDefaultColor, fontSize: Dimensions.NAVBAR_FONT_SIZE, fontWeight: FontWeight.w400),
           )
         ],

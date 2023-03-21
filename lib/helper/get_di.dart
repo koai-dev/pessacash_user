@@ -98,7 +98,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => FaqController(faqrepo: Get.find()));
   Get.lazyPut(() => BottomSliderController());
 
-  Get.lazyPut(() => MenuController());
+  Get.lazyPut(() => Menu2Controller());
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => HomeController());
   Get.lazyPut(() => CreateAccountController());

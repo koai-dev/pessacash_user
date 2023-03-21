@@ -10,6 +10,8 @@ import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_small_button.dart';
 import 'package:six_cash/view/screens/onboarding/chose_login_registration/widget/indicator_section.dart';
 
+import '../../../base/roundedButton.dart';
+
 class ChoiceScreen extends StatelessWidget {
   ChoiceScreen({Key key}) : super(key: key);
 

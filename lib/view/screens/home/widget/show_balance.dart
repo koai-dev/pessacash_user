@@ -15,10 +15,8 @@ class ShowBalance extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min,
       children: [
         profileController.userInfo != null
-        ?Text('${PriceConverter.balanceWithSymbol(balance: profileController.userInfo.balance.toString())}',
-            style: rubikMedium.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_OVER_LARGE,))
-        :Text(PriceConverter.balanceWithSymbol(balance: '0.0'),
-            style: rubikMedium.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_OVER_LARGE,)
+        ?Text(PriceConverter.balanceWithSymbol(balance: profileController.userInfo.balance.toString()), style: rubikMedium.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_OVER_LARGE,))
+        :Text(PriceConverter.balanceWithSymbol(balance: '0.0'), style: rubikMedium.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_OVER_LARGE,)
           ),
         const SizedBox(
           height: Dimensions.PADDING_SIZE_EXTRA_SMALL,

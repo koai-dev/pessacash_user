@@ -11,6 +11,7 @@ import 'package:six_cash/view/base/animated_custom_dialog.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/base/logout_dialog.dart';
 
+import '../helper/price_converter.dart';
 import 'bootom_slider_controller.dart';
 
 class ProfileController extends GetxController implements GetxService {
@@ -20,9 +21,11 @@ class ProfileController extends GetxController implements GetxService {
       Get.find<BottomSliderController>();
   UserInfo _userInfo;
   bool _isLoading = false;
+  String _currencyBalance;
 
   UserInfo get userInfo => _userInfo;
   bool get isLoading => _isLoading;
+  String get currencyBalance => _currencyBalance;
   String _gender = 'Male';
   String get gender => _gender;
   // String _occupation = occupationData[1]['title'];
@@ -49,6 +52,8 @@ class ProfileController extends GetxController implements GetxService {
         _userInfo = UserInfo.fromJson(response.body);
         Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
         Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
+        _currencyBalance = PriceConverter.balanceWithSymbol(
+            balance: _userInfo.balance.toString());
         _isLoading = false;
       } else {
         ApiChecker.checkApi(response);

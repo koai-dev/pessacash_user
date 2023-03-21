@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "535817998443",
-    "project_id": "cash-ec3ff",
-    "storage_bucket": "cash-ec3ff.appspot.com"
+    "project_number": "156714686968",
+    "project_id": "cash-55a07",
+    "storage_bucket": "cash-55a07.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:535817998443:android:b283526958c747a992212e",
+        "mobilesdk_app_id": "1:156714686968:android:989ea3097305bbaae19e0d",
         "android_client_info": {
-          "package_name": "com.sixamtech.sixcash_user"
+          "package_name": "com.rbpessacash.agent"
         }
       },
       "oauth_client": [
         {
-          "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
+          "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXeqc5VcEMcrguzMjdL8WpR-p5hb-nxC8"
+          "current_key": "AIzaSyBxPbwGxN5nltmGTRQMGuRJvQoEv15RM6o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
+              "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "535817998443-l5vbuu1otcd7inq1198bm730hhsv89e3.apps.googleusercontent.com",
+              "client_id": "156714686968-1bbs4fa85h2cg4ou3t6u9ud8n5bs35ke.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.cash"
+                "bundle_id": "com.rbpessacash.user"
               }
             }
           ]
@@ -43,70 +43,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:535817998443:android:72b63982aeb7a66992212e",
+        "mobilesdk_app_id": "1:156714686968:android:edcd622818fff798e19e0d",
         "android_client_info": {
-          "package_name": "com.u6amtech.six_cash"
+          "package_name": "com.rbpessacash.user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
+          "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXeqc5VcEMcrguzMjdL8WpR-p5hb-nxC8"
+          "current_key": "AIzaSyBxPbwGxN5nltmGTRQMGuRJvQoEv15RM6o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
+              "client_id": "156714686968-c31treg8qmlb3i3jilfsngv8ighsshha.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "535817998443-l5vbuu1otcd7inq1198bm730hhsv89e3.apps.googleusercontent.com",
+              "client_id": "156714686968-1bbs4fa85h2cg4ou3t6u9ud8n5bs35ke.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sixamtech.cash"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:535817998443:android:97c598039780d30e92212e",
-        "android_client_info": {
-          "package_name": "com.u6amtech.six_cash_agent"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDXeqc5VcEMcrguzMjdL8WpR-p5hb-nxC8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "535817998443-l5vbuu1otcd7inq1198bm730hhsv89e3.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.sixamtech.cash"
+                "bundle_id": "com.rbpessacash.user"
               }
             }
           ]

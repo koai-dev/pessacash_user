@@ -1,4 +1,4 @@
-package com.sixamtech.sixcash_user
+package com.rbpessacash.user
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

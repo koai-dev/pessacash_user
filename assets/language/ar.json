@@ -270,6 +270,8 @@
   "withdraw_history": "سحب التاريخ",
   "pending_balance": "رصيد معلق",
   "sent": "أرسلت",
-  "withdraw_req": "سحب الطلب."
-
+  "withdraw_req": "سحب الطلب.",
+  "update_bank_info": "Update Bank Info",
+  "agent_method": "Agent Near You (Handover)",
+  "bank_method": "Internet Banking"
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/data/model/response/contact_model.dart';
 import 'package:six_cash/view/screens/add_money/web_screen.dart';
@@ -33,6 +34,7 @@ import 'package:six_cash/view/screens/transaction_money/transaction_money_confir
 import 'package:six_cash/view/screens/transaction_money/widget/share_statement_widget.dart';
 import 'package:six_cash/view/screens/welcome_screen/welcome_screen.dart';
 import 'package:get/get.dart';
+import '../view/screens/bank/add_bank_screen.dart';
 
 class RouteHelper {
   static const String splash = '/splash';
@@ -89,6 +91,9 @@ class RouteHelper {
   static const String support = '/support';
   static const String chose_language_screen = '/chose_language_screen';
   static const String qr_code_download_or_share = '/qr_code_download_or_share';
+  static const String bank = "/add_bank";
+
+  static getBankScreen({@required String from}) => '$bank?from=$from';
 
   static getSplashRoute() => '$splash';
   static String getHomeRoute(String name) => '$home?name=$name';
@@ -185,9 +190,14 @@ class RouteHelper {
     GetPage(name: about_us, page: () => HtmlViewScreen(title: 'about_us'.tr, url: Get.find<SplashController>().configModel.aboutUs)),
     GetPage(name: privacy, page: () => HtmlViewScreen(title: 'privacy_policy'.tr, url: Get.find<SplashController>().configModel.privacyPolicy)),
     GetPage(name: support, page: () => SupportScreen()),
-    GetPage(name: qr_code_download_or_share, page: () => QrCodeDownloadOrShareScreen(qrCode:  utf8.decode(base64Url.decode(Get.parameters['qr-code'].replaceAll(' ', '+'))),
-        phoneNumber: utf8.decode(base64Url.decode(Get.parameters['phone-number'].replaceAll(' ', '+'))),)),
-
-    ];
-
+    GetPage(
+        name: qr_code_download_or_share,
+        page: () => QrCodeDownloadOrShareScreen(
+              qrCode: utf8.decode(base64Url
+                  .decode(Get.parameters['qr-code'].replaceAll(' ', '+'))),
+              phoneNumber: utf8.decode(base64Url
+                  .decode(Get.parameters['phone-number'].replaceAll(' ', '+'))),
+            )),
+    GetPage(name: bank, page: () => AddBankScreen(from: Get.parameters['from'],))
+  ];
 }

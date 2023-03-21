@@ -21,6 +21,7 @@ import 'package:six_cash/view/screens/home/widget/secend_card_portion.dart';
 import 'package:six_cash/view/screens/home/widget/shimmer/web_site_shimmer.dart';
 import 'package:six_cash/view/screens/home/widget/third_card_portion.dart';
 
+import '../../../helper/price_converter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -39,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
     Get.find<WebsiteLinkController>().getWebsiteList();
     Get.find<NotificationController>().getNotificationList();
     Get.find<TransactionMoneyController>().getPurposeList();
-    Get.find<TransactionMoneyController>().fetchContact();
+    if(Get.find<TransactionMoneyController>().permissionStatus == PermissionStatus.granted) {
+      Get.find<TransactionMoneyController>().fetchContact();
+    }
     Get.find<TransactionMoneyController>().getWithdrawMethods(isReload: reload);
     Get.find<RequestedMoneyController>().getWithdrawHistoryList();
 

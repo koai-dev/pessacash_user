@@ -5,11 +5,10 @@ import 'package:six_cash/data/model/response/on_boarding_model.dart';
 import 'images.dart';
 
 class AppConstants {
-  static const String APP_NAME = 'TestCash';
+  static const String APP_NAME = 'RBPESSACASH';
   //demo
-  static const String BASE_URL = 'https://6cash-admin.6amtech.com';
-  //
-  // static const String BASE_URL = 'https://6cash-admin.6am.one';
+
+  static const String BASE_URL = 'https://rbpessacash.com';
   // //fun
   // static const String BASE_URL = 'https://6cash-admin.6am.fun';
   static const bool DEMO = true;
@@ -110,7 +109,8 @@ class AppConstants {
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: Images.english, languageName: 'English', countryCode: 'US', languageCode: 'en'),
     LanguageModel(imageUrl: Images.saudi, languageName: 'Arabic', countryCode: 'SA', languageCode: 'ar'),
-
+    LanguageModel(imageUrl: Images.burundi, languageName: 'Ikirundi', countryCode: 'BI', languageCode: 'rn'),
+    LanguageModel(imageUrl: Images.ghana, languageName: 'Swahili', countryCode: 'TZ', languageCode: 'sw'),
   ];
 
   static  List<OnboardModel> onboardList = [

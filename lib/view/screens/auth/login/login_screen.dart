@@ -385,7 +385,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   }
 
   Future<void> _login(BuildContext context) async {
-    Get.find<MenuController>().resetNavBar();
+    Get.find<Menu2Controller>().resetNavBar();
     String _code = _countryCode;
     String _phone = phoneController.text.trim();
     String _password = passwordController.text.trim();

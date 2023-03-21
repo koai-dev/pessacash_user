@@ -11,127 +11,6 @@ import 'package:six_cash/controller/splash_controller.dart';
 import '../util/currency/currency.dart';
 import '../util/currency/money_converter.dart';
 
-//
-// class PriceConverter {
-//   static String convertPrice(Currency currency,
-//       {double discount, String discountType}) {
-//     double price = currency.amount;
-//     if (discount != null && discountType != null) {
-//       if (discountType == 'amount') {
-//         price = price - discount;
-//       } else if (discountType == 'percent') {
-//         price = price - ((discount / 100) * price);
-//       }
-//     }
-//     // return '${Get.find<SplashController>().configModel.currencySymbol}${(price).toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
-//
-//     return '${currency.symbol}${(price).toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
-//   }
-//
-//   static double convertWithDiscount(BuildContext context, double price,
-//       double discount, String discountType) {
-//     if (discountType == 'amount') {
-//       price = price - discount;
-//     } else if (discountType == 'percent') {
-//       price = price - ((discount / 100) * price);
-//     }
-//     return price;
-//   }
-//
-//   static double calculation(
-//       double amount, double discount, String type, int quantity) {
-//     double calculatedAmount = 0;
-//     if (type == 'amount') {
-//       calculatedAmount = discount * quantity;
-//     } else if (type == 'percent') {
-//       calculatedAmount = (discount / 100) * (amount * quantity);
-//     }
-//     return calculatedAmount;
-//   }
-//
-//   static String percentageCalculation(BuildContext context, String price,
-//       String discount, String discountType) {
-//     return '$discount${discountType == 'percent' ? '%' : '\$'} OFF';
-//   }
-//
-//   static double withCashOutCharge(double amount) {
-//     return (amount *
-//                 Get.find<SplashController>().configModel.cashOutChargePercent) /
-//             100 +
-//         amount;
-//   }
-//
-//   static double withSendMoneyCharge(double amount) {
-//     return amount +
-//         Get.find<SplashController>().configModel.sendMoneyChargeFlat;
-//   }
-//
-//   static Future<String> availableBalance() async {
-//     // String _currencySymbol =
-//     //     Get.find<SplashController>().configModel.currencySymbol;
-//     String _currentBalance =
-//         Get.find<ProfileController>().userInfo.balance.toStringAsFixed(2);
-//     Currency currency = await convertCurrency(double.parse(_currentBalance));
-//     String amountS = convertPrice(currency);
-//     return amountS;
-//   }
-//
-//   static String newBalanceWithDebit(
-//       {@required double inputBalance, @required double charge}) {
-//     print('user balance = ${Get.find<ProfileController>().userInfo.phone}');
-//     String _currencySymbol =
-//         Get.find<SplashController>().configModel.currencySymbol;
-//     String _currentBalance = (Get.find<ProfileController>().userInfo.balance -
-//             (inputBalance + charge))
-//         .toStringAsFixed(2);
-//     return Get.find<SplashController>().configModel.currencyPosition == 'left'
-//         ? '$_currencySymbol$_currentBalance'
-//         : '$_currentBalance$_currencySymbol';
-//   }
-//
-//   static String newBalanceWithCredit({@required double inputBalance}) {
-//     String _currencySymbol =
-//         Get.find<SplashController>().configModel.currencySymbol;
-//     String _currentBalance =
-//         (Get.find<ProfileController>().userInfo.balance + inputBalance)
-//             .toStringAsFixed(2);
-//     return Get.find<SplashController>().configModel.currencyPosition == 'left'
-//         ? '$_currencySymbol$_currentBalance'
-//         : '$_currentBalance$_currencySymbol';
-//   }
-//
-//   static String balanceInputHint() {
-//     String _currencySymbol =
-//         Get.find<SplashController>().configModel.currencySymbol;
-//     String _balance = '0';
-//     return Get.find<SplashController>().configModel.currencyPosition == 'left'
-//         ? '$_currencySymbol$_balance'
-//         : '$_balance$_currencySymbol';
-//   }
-//
-//   static Future<String> balanceWithSymbol({String balance}) async {
-//     // String _currencySymbol = currencySymbol();
-//     Currency currency = await convertCurrency(double.parse(balance));
-//     String amountS = convertPrice(currency);
-//     return amountS;
-//   }
-//
-//   static Future<Currency> convertCurrency(double origin) async {
-//     final response = await MoneyConverter.convert(
-//         Currency(Currency.USD,
-//             amount: origin,
-//             symbol: Get.find<SplashController>().configModel.currencySymbol),
-//         currencyName());
-//     return Currency(response.type,
-//         amount: response.amount, symbol: response.symbol);
-//   }
-//
-//   static Currency currencyName() {
-//     var format = NumberFormat.simpleCurrency(locale: Platform.localeName);
-//     return Currency(format.currencyName, symbol: format.currencySymbol);
-//   }
-// }
-
 class PriceConverter {
   static Future<String> convertPrice(double price,
       {double discount,
@@ -285,18 +164,17 @@ class PriceConverter {
     return locale;
   }
 
-  static Currency findCurrency(PhoneNumber phoneNumber){
-    if(phoneNumber.countryCode=="257"){
+  static Currency findCurrency(PhoneNumber phoneNumber) {
+    if (phoneNumber.countryCode == "257") {
       return Currency("BIF", symbol: "FBu");
-    }else if(phoneNumber.countryCode=="255"){
+    } else if (phoneNumber.countryCode == "255") {
       return Currency("TZS", symbol: "Tsh");
-    }else if(phoneNumber.countryCode=="254"){
+    } else if (phoneNumber.countryCode == "254") {
       return Currency("KES", symbol: "Ksh");
-    }else if(phoneNumber.countryCode=="233"){
+    } else if (phoneNumber.countryCode == "233") {
       return Currency("GHS", symbol: "GH₵");
-    }else{
-      var format = NumberFormat.simpleCurrency(
-          locale: Platform.localeName);
+    } else {
+      var format = NumberFormat.simpleCurrency(locale: Platform.localeName);
       return Currency(format.currencyName, symbol: format.currencySymbol);
     }
   }

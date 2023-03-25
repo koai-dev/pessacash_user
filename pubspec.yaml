@@ -26,13 +26,14 @@ dependencies:
   flutter_contacts: ^1.1.4
   azlistview: ^2.0.0
   pin_code_fields: ^7.3.0
-  modal_bottom_sheet: ^2.0.0
+#  modal_bottom_sheet: ^2.0.0
+  modal_bottom_sheet: 3.0.0-pre
   slide_to_confirm: ^1.1.0
   lottie: ^1.2.1
   expandable_bottom_sheet: ^1.1.1+1
   smooth_page_indicator: ^1.0.0+2
   image_picker: ^0.8.4+4
-  country_code_picker: ^2.0.2
+  country_code_picker: ^3.0.0
   camera: ^0.10.0+4
   http: ^0.13.4
   carousel_slider: ^4.0.0

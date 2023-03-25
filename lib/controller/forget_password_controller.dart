@@ -1,4 +1,4 @@
-import 'package:country_code_picker/country_code.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:six_cash/controller/auth_controller.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:flutter/material.dart';

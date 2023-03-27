@@ -39,6 +39,12 @@ class TransactionHistoryController extends GetxController implements GetxService
   List<Transactions> _cashOutList = [];
   List<Transactions> get cashOutList => _cashOutList;
 
+  List<Transactions> _withdrawList = [];
+  List<Transactions> get withdrawList => _withdrawList;
+
+  List<Transactions> _paymentList = [];
+  List<Transactions> get paymentList => _paymentList;
+
 
 
   bool get isSearching => _isSearching;
@@ -62,6 +68,8 @@ class TransactionHistoryController extends GetxController implements GetxService
       _addMoneyList = [];
       _receivedMoneyList =[];
       _cashOutList = [];
+      _withdrawList = [];
+      _paymentList = [];
     }
     _offset = offset;
     if(!_offsetList.contains(offset)) {
@@ -75,6 +83,8 @@ class TransactionHistoryController extends GetxController implements GetxService
         _addMoneyList = [];
         _receivedMoneyList =[];
         _cashOutList = [];
+        _withdrawList = [];
+        _paymentList = [];
         response.body['transactions'].forEach((transactionHistory) {
           Transactions history = Transactions.fromJson(transactionHistory);
           if(history.transactionType == AppConstants.SEND_MONEY){
@@ -85,6 +95,10 @@ class TransactionHistoryController extends GetxController implements GetxService
             _addMoneyList.add(history);
           }else if(history.transactionType == AppConstants.RECEIVED_MONEY){
             _receivedMoneyList.add(history);
+          }else if(history.transactionType == AppConstants.WITHDRAW){
+            _withdrawList.add(history);
+          }else if(history.transactionType == AppConstants.PAYMENT){
+            _paymentList.add(history);
           }else if(history.transactionType == AppConstants.CASH_OUT){
             _cashOutList.add(history);
           }_transactionList.add(history);

@@ -3,22 +3,27 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:six_cash/controller/requested_money_controller.dart';
 import 'package:six_cash/data/model/response/requested_money_model.dart';
+import 'package:six_cash/data/model/withdraw_histroy_model.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/base/no_data_screen.dart';
+import 'package:six_cash/view/screens/requested_money/requested_money_list_screen.dart';
 import 'package:six_cash/view/screens/requested_money/widget/requested_money_card.dart';
 class RequestedMoneyScreen extends StatelessWidget {
   final ScrollController scrollController;
   final bool isHome;
-  final bool isOwn;
-  const RequestedMoneyScreen({Key key, this.scrollController, this.isHome, this.isOwn}) : super(key: key);
+  final RequestType requestType;
+  const RequestedMoneyScreen({Key key, this.scrollController, this.isHome, this.requestType,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     int offset = 1;
     scrollController?.addListener(() {
-      if(scrollController.position.maxScrollExtent == scrollController.position.pixels
-          && (isOwn ? Get.find<RequestedMoneyController>().ownRequestList.length :  Get.find<RequestedMoneyController>().requestedMoneyList.length) != 0
+      if(requestType != RequestType.WITHDRAW
+          && scrollController.position.maxScrollExtent == scrollController.position.pixels
+          && (requestType == RequestType.SEND_REQUEST
+              ? Get.find<RequestedMoneyController>().ownRequestList.length
+              :  Get.find<RequestedMoneyController>().requestedMoneyList.length) != 0
           && !Get.find<RequestedMoneyController>().isLoading) {
         int pageSize;
         pageSize = Get.find<RequestedMoneyController>().pageSize;
@@ -27,7 +32,7 @@ class RequestedMoneyScreen extends StatelessWidget {
           offset++;
           print('end of the page');
           Get.find<RequestedMoneyController>().showBottomLoader();
-          if(isOwn) {
+          if(requestType == RequestType.SEND_REQUEST) {
             Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(offset);
           }else {
             Get.find<RequestedMoneyController>().getRequestedMoneyList(offset);
@@ -39,27 +44,65 @@ class RequestedMoneyScreen extends StatelessWidget {
     });
     return GetBuilder<RequestedMoneyController>(builder: (req){
       List<RequestedMoney> reqList;
-      reqList = isOwn ? req.ownRequestList : req.requestedMoneyList;
+      List<WithdrawHistory> withdrawHistoryList;
+      reqList = requestType == RequestType.SEND_REQUEST
+          ? req.ownRequestList : req.requestedMoneyList;
+
       if (Get.find<RequestedMoneyController>().requestTypeIndex == 0) {
-        reqList = isOwn ? req.ownPendingRequestedMoneyList : req.pendingRequestedMoneyList;
+        if(requestType == RequestType.WITHDRAW) {
+          withdrawHistoryList = req.pendingWithdraw;
+        }else{
+          reqList = requestType == RequestType.SEND_REQUEST
+              ? req.ownPendingRequestedMoneyList : req.pendingRequestedMoneyList;
+        }
+
       } else if (Get.find<RequestedMoneyController>().requestTypeIndex == 1) {
-        reqList = isOwn ? req.ownAcceptedRequestedMoneyList : req.acceptedRequestedMoneyList;
+        if(requestType == RequestType.WITHDRAW) {
+          withdrawHistoryList = req.acceptedWithdraw;
+        }else{
+          reqList = requestType == RequestType.SEND_REQUEST
+              ? req.ownAcceptedRequestedMoneyList : req.acceptedRequestedMoneyList;
+        }
+
+
       }  else if (Get.find<RequestedMoneyController>().requestTypeIndex == 2) {
-        reqList = isOwn ? req.ownDeniedRequestedMoneyList :  req.deniedRequestedMoneyList;
+        if(requestType == RequestType.WITHDRAW) {
+          withdrawHistoryList = req.deniedWithdraw;
+        }else{
+          reqList = requestType == RequestType.SEND_REQUEST
+              ? req.ownDeniedRequestedMoneyList :  req.deniedRequestedMoneyList;
+        }
+
+
       }else{
-        reqList = isOwn ? req.ownRequestList :  req.requestedMoneyList;
+        if(requestType == RequestType.WITHDRAW) {
+          withdrawHistoryList = req.allWithdraw;
+        }else{
+          reqList = requestType == RequestType.SEND_REQUEST
+              ? req.ownRequestList :  req.requestedMoneyList;
+        }
+
       }
       return Column(children: [
-        !req.isLoading ? reqList.length != 0 ?
-        Container(
+        !req.isLoading ? (requestType == RequestType.WITHDRAW
+            ? withdrawHistoryList.length != 0 : reqList.length != 0
+        ) ? Container(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
           child: ListView.builder(
-            physics:  NeverScrollableScrollPhysics(),
+              physics:  NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount:isHome?1: reqList.length,
+              itemCount: isHome ? 1 : requestType == RequestType.WITHDRAW
+                  ? withdrawHistoryList.length : reqList.length,
+
               itemBuilder: (ctx,index){
                 return Container(
-                    child: RequestedMoneyCard(requestedMoney: reqList[index], isHome: isHome, isOwn: isOwn));
+                  child: RequestedMoneyCard(
+                    requestedMoney: requestType != RequestType.WITHDRAW ? reqList[index] : null,
+                    isHome: isHome,
+                    requestType: requestType,
+                    withdrawHistory:  requestType == RequestType.WITHDRAW ? withdrawHistoryList[index] : null,
+                  ),
+                );
               }),
         ): NoDataFoundScreen() : RequestedMoneyShimmer(isHome: isHome),
 

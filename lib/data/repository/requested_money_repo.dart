@@ -20,4 +20,7 @@ class RequestedMoneyRepo{
   Future<Response> denyRequestedMoney(int id, String pin) async {
     return await apiClient.postData('${AppConstants.DENIED_REQUESTED_MONEY_URI}',{"id": id, "pin" :pin});
   }
+  Future<Response> getWithdrawRequest() async {
+    return await apiClient.getData('${AppConstants.GET_WITHDRAWAL_REQUEST}');
+  }
 }

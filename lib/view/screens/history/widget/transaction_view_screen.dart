@@ -33,6 +33,10 @@ class TransactionViewScreen extends StatelessWidget {
           transactionList = transactionHistory.receivedMoneyList;
         }else if (Get.find<TransactionHistoryController>().transactionTypeIndex == 5){
           transactionList = transactionHistory.cashOutList;
+        } else if (Get.find<TransactionHistoryController>().transactionTypeIndex == 6){
+          transactionList = transactionHistory.withdrawList;
+        }else if (Get.find<TransactionHistoryController>().transactionTypeIndex == 7){
+          transactionList = transactionHistory.paymentList;
         }
       }
 

@@ -45,7 +45,7 @@ class FieldItemView extends StatelessWidget {
           fillColor: Theme.of(context).cardColor,
           isPassword: methodField.inputType == 'password',
         ),
-        SizedBox(height: 10,),
+        SizedBox(height: 5,),
       ],
     );
   }

@@ -40,6 +40,10 @@ class SplashRepo {
     if(!sharedPreferences.containsKey(AppConstants.BIOMETRIC_AUTH)) {
       sharedPreferences.setBool(AppConstants.BIOMETRIC_AUTH, true);
     }
+    if(!sharedPreferences.containsKey(AppConstants.CONTACT_PERMISSION)) {
+      sharedPreferences.setString(AppConstants.CONTACT_PERMISSION, '');
+    }
+
 
     return Future.value(true);
   }

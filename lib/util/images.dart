@@ -2,9 +2,6 @@ class Images {
   // static const String logo = 'assets/image/logo.png';
   static const String saudi = 'assets/image/arabic.png';
   static const String english = 'assets/image/english.png';
-  static const String burundi = 'assets/image/burundi.png';
-  static const String ghana = 'assets/image/ghana.png';
-
 
   //
    static const String logo = 'assets/image/logo.png';
@@ -31,12 +28,12 @@ class Images {
   static const String bold_notification_icon ='assets/image/Notification_bold.png';
   static const String wolet_logo = 'assets/image/wolet.png';
   static const String sendMoney_logo = 'assets/image/send_money.png';
-  static const String cashOut_logo = 'assets/image/cashout.png';
-  static const String requestMoney_logo = 'assets/image/request_money.png';
+  static const String cashOut_logo = 'assets/image/cash_out.png';
+  static const String requestMoney_logo = 'assets/image/received_money.png';
   static const String qrCode = 'assets/image/qr_code.png';
   static const String sendMoneyLogo3 = 'assets/image/sendMoney3.png';
   static const String cashOutLogo3 = 'assets/image/cashout3.png';
-  static const String addMoneyLogo3 = 'assets/image/addmoney3.png';
+  static const String addMoneyLogo3 = 'assets/image/add_money.png';
   static const String requestMoneyLogo = 'assets/image/req_money.png';
   static const String pinChange_logo = 'assets/image/pinChange.png';
   static const String privacy = 'assets/image/Privacy.png';
@@ -63,6 +60,11 @@ class Images {
   static const String on_select = 'assets/image/on_select.png';
   static const String slide_right_icon = 'assets/image/slide_right_icon.png';
   static const String withdraw = 'assets/image/withdraw.png';
+  static const String payment = 'assets/image/payment.png';
+
+  static String getTransactionImage(transactionType) => 'assets/image/${
+      transactionType == 'cash_in' ? 'send_money' : transactionType
+  }.png';
 
   //other info
   static const String male = 'assets/image/Male.png';
@@ -77,6 +79,7 @@ class Images {
   static const String banner_place_holder = 'assets/image/banner_place_holder.png';
   static const String web_link_place_holder = 'assets/image/web_link_place_holder.png';
   static const String no_data = 'assets/image/no_data.png';
+  static const String fingerprint = 'assets/image/fingerprint.png';
 
   //animation
   static const String failed_animation = 'assets/animationFile/failed_animation.json';

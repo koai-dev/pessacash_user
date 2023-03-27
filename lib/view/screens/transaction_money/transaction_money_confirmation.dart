@@ -197,7 +197,6 @@ class TransactionMoneyConfirmation extends StatelessWidget {
                                                   ),
 
                                                   builder: (context) => BottomSheetWithSlider(
-                                                    amountCharge: _configModel.sendMoneyChargeFlat,
                                                     amount: inputBalance.toString(),
                                                     contactModel: contactModel,
                                                     pinCode: Get.find<BottomSliderController>().pin,
@@ -231,7 +230,6 @@ class TransactionMoneyConfirmation extends StatelessWidget {
                                         )),
                                         builder: (context) {
                                           return BottomSheetWithSlider(
-                                            amountCharge: _configModel.sendMoneyChargeFlat,
                                             amount: inputBalance.toString(),
                                             contactModel: contactModel,
                                             pinCode: Get.find<BottomSliderController>().pin,

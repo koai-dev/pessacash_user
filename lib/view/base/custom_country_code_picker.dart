@@ -24,4 +24,17 @@ class CustomCountryCodePiker extends StatelessWidget {
       showFlag: false,
     );
   }
+
+
+}
+
+String getCountryCode(String number) {
+  String _countryCode = '';
+  try{
+    _countryCode = codes.firstWhere((item) =>
+        number.contains('${item['dial_code']}'))['dial_code'];
+  }catch(error){
+    print('country error: $error');
+  }
+  return _countryCode;
 }

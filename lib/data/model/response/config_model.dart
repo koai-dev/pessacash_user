@@ -41,9 +41,9 @@ class ConfigModel {
   String currencyPosition;
   double cashOutChargePercent;
   double addMoneyChargePercent;
-  int sendMoneyChargeFlat;
+  double sendMoneyChargeFlat;
   double agentCommissionPercent;
-  int adminCommission;
+  double adminCommission;
   bool twoFactor;
   bool phoneVerification;
   String country;
@@ -62,11 +62,11 @@ class ConfigModel {
     baseUrls: BaseUrls.fromJson(json["base_urls"]),
     currencySymbol: json["currency_symbol"],
     currencyPosition: json["currency_position"] ?? 'left',
-    cashOutChargePercent: json["cashout_charge_percent"],
-    addMoneyChargePercent: json["addmoney_charge_percent"],
-    sendMoneyChargeFlat: json["sendmoney_charge_flat"],
-    agentCommissionPercent: json["agent_commission_percent"],
-    adminCommission: json["admin_commission"],
+    cashOutChargePercent: double.tryParse('${json["cashout_charge_percent"]}') ?? 0,
+    addMoneyChargePercent: double.tryParse('${json["addmoney_charge_percent"]}') ?? 0,
+    sendMoneyChargeFlat: double.tryParse('${json["sendmoney_charge_flat"]}') ?? 0,
+    agentCommissionPercent: double.tryParse('${json["agent_commission_percent"]}') ?? 0,
+    adminCommission:  double.tryParse('${json["admin_commission"]}') ?? 0,
     twoFactor: int.parse(json["two_factor"].toString()) == 1 ? true: false,
     phoneVerification: json["phone_verification"] == 1 ? true: false,
     country: json["country"] ?? 'BD',

@@ -1,7 +1,7 @@
+
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:six_cash/controller/banner_controller.dart';
 import 'package:six_cash/controller/home_controller.dart';
 import 'package:six_cash/controller/notification_controller.dart';
@@ -21,38 +21,35 @@ import 'package:six_cash/view/screens/home/widget/secend_card_portion.dart';
 import 'package:six_cash/view/screens/home/widget/shimmer/web_site_shimmer.dart';
 import 'package:six_cash/view/screens/home/widget/third_card_portion.dart';
 
-import '../../../helper/price_converter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isFirst = true;
-
   Future<void> _loadData(BuildContext context, bool reload) async {
     Get.find<ProfileController>().profileData(reload: reload);
     Get.find<BannerController>().getBannerList(reload);
-    Get.find<RequestedMoneyController>()
-        .getRequestedMoneyList(1, reload: reload);
-    Get.find<RequestedMoneyController>()
-        .getOwnRequestedMoneyList(1, reload: reload);
-    Get.find<TransactionHistoryController>()
-        .getTransactionData(1, reload: reload);
+    Get.find<RequestedMoneyController>().getRequestedMoneyList(1 ,reload: reload );
+    Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: reload );
+    Get.find<TransactionHistoryController>().getTransactionData(1, reload: reload);
     Get.find<WebsiteLinkController>().getWebsiteList();
     Get.find<NotificationController>().getNotificationList();
     Get.find<TransactionMoneyController>().getPurposeList();
-    if(Get.find<TransactionMoneyController>().permissionStatus == PermissionStatus.granted) {
-      Get.find<TransactionMoneyController>().fetchContact();
-    }
+    Get.find<TransactionMoneyController>().fetchContact();
     Get.find<TransactionMoneyController>().getWithdrawMethods(isReload: reload);
-  }
+    Get.find<RequestedMoneyController>().getWithdrawHistoryList();
 
+
+
+
+  }
   @override
   void initState() {
+
     _loadData(context, false);
     isFirst = false;
     super.initState();
@@ -100,4 +97,6 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         });
   }
+
 }
+

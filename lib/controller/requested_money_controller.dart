@@ -2,6 +2,7 @@ import 'package:six_cash/data/api/api_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/data/model/response/requested_money_model.dart';
+import 'package:six_cash/data/model/withdraw_histroy_model.dart';
 import 'package:six_cash/data/repository/requested_money_repo.dart';
 import 'package:six_cash/util/app_constants.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
@@ -39,6 +40,14 @@ class RequestedMoneyController extends GetxController implements GetxService {
 
   List<RequestedMoney> get deniedRequestedMoneyList => _deniedRequestedMoneyList;
   List<RequestedMoney> get ownDeniedRequestedMoneyList => _ownDeniedRequestedMoneyList;
+
+  WithdrawHistoryModel _withdrawHistoryModel;
+  WithdrawHistoryModel get withdrawHistoryModel => _withdrawHistoryModel;
+
+  List<WithdrawHistory> pendingWithdraw = [];
+  List<WithdrawHistory> acceptedWithdraw = [];
+  List<WithdrawHistory> deniedWithdraw = [];
+  List<WithdrawHistory> allWithdraw = [];
 
   int _offset = 1;
   int _pageSize;
@@ -167,12 +176,54 @@ class RequestedMoneyController extends GetxController implements GetxService {
   int _requestTypeIndex = 0;
   int get requestTypeIndex => _requestTypeIndex;
 
-  void setIndex(int index) {
+  void setIndex(int index, {bool isUpdate = true}) {
     _requestTypeIndex = index;
-    update();
+    if(isUpdate){
+      update();
+    }
   }
+
   void showBottomLoader() {
     _isLoading = true;
     update();
   }
+
+  Future getWithdrawHistoryList({bool reload = false}) async{
+
+    if(reload || _withdrawHistoryModel == null) {
+      _withdrawHistoryModel = null;
+    }
+
+    if(_withdrawHistoryModel == null) {
+      Response _response = await requestedMoneyRepo.getWithdrawRequest();
+      print('withdraw data : ${_response.body}');
+      if(_response.body['response_code'] == 'default_200' && _response.body['content'] != null){
+
+        pendingWithdraw = [];
+        acceptedWithdraw = [];
+        deniedWithdraw = [];
+        allWithdraw = [];
+
+        _withdrawHistoryModel = WithdrawHistoryModel.fromJson(_response.body);
+        print('withdraw list : ${_withdrawHistoryModel.withdrawHistoryList.length}');
+        _withdrawHistoryModel.withdrawHistoryList.forEach((_withdrawHistory) {
+
+          pendingWithdraw.addIf(_withdrawHistory.requestStatus == AppConstants.PENDING, _withdrawHistory);
+          acceptedWithdraw.addIf(_withdrawHistory.requestStatus == AppConstants.APPROVED, _withdrawHistory);
+          deniedWithdraw.addIf(_withdrawHistory.requestStatus == AppConstants.DENIED, _withdrawHistory);
+          allWithdraw.add(_withdrawHistory);
+        });
+        print('${pendingWithdraw.length}');
+
+      }
+      else{
+        ApiChecker.checkApi(_response);
+      }
+
+    }
+    _isLoading = false;
+    update();
+
+  }
+
 }

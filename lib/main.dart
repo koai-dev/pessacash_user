@@ -35,7 +35,8 @@ Future<void> main() async {
     if (GetPlatform.isMobile) {
       final NotificationAppLaunchDetails notificationAppLaunchDetails = await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
       if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-        _orderID = notificationAppLaunchDetails.notificationResponse.payload != null ? int.parse(notificationAppLaunchDetails.notificationResponse.payload) : null;
+        _orderID = notificationAppLaunchDetails.notificationResponse.payload != null
+            ? int.parse(notificationAppLaunchDetails.notificationResponse.payload) : null;
       }
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);

@@ -49,6 +49,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       Get.find<RequestedMoneyController>().getRequestedMoneyList(1 ,reload: true );
       Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: true );
       Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
+      Get.find<RequestedMoneyController>().getWithdrawHistoryList(reload: true);
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -57,6 +58,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
        Get.find<RequestedMoneyController>().getRequestedMoneyList(1 ,reload: true );
        Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: true );
        Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
+      Get.find<RequestedMoneyController>().getWithdrawHistoryList(reload: true);
     });
   }
 

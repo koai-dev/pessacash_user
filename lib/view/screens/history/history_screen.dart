@@ -34,7 +34,9 @@ class HistoryScreen extends StatelessWidget {
               SliverPersistentHeader(
                   pinned: true,
                   delegate: SliverDelegate(
-                      child: Container(padding: EdgeInsets.symmetric( vertical: Dimensions.PADDING_SIZE_SMALL), height: 50, alignment: Alignment.centerLeft,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),
+                        height: 50, alignment: Alignment.centerLeft,
                         child: GetBuilder<TransactionHistoryController>(
                           builder: (historyController){
                             return ListView(
@@ -58,6 +60,13 @@ class HistoryScreen extends StatelessWidget {
                                   SizedBox(width: 10),
 
                                   TransactionTypeButton(text: 'cash_out'.tr, index: 5, transactionHistoryList: historyController.cashOutList),
+                                  SizedBox(width: 10),
+
+                                  TransactionTypeButton(text: 'withdraw'.tr, index: 6, transactionHistoryList: historyController.withdrawList),
+                                  SizedBox(width: 10),
+
+                                  TransactionTypeButton(text: 'payment'.tr, index: 7, transactionHistoryList: historyController.paymentList),
+                                  SizedBox(width: 10),
 
                                 ]);
                           },

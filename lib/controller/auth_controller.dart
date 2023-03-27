@@ -234,6 +234,7 @@ class AuthController extends GetxController implements GetxService {
         'f_name': signUpBody.fName,
         'l_name': signUpBody.lName,
         'phone': signUpBody.phone,
+        'dial_country_code': signUpBody.dialCountryCode,
         'password': signUpBody.password,
         'gender': signUpBody.gender,
         'occupation': signUpBody.occupation,

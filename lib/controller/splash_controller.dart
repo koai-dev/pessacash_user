@@ -24,15 +24,16 @@ class SplashController extends GetxController implements GetxService{
 
   Future<Response> getConfigData() async {
     Response _response = await splashRepo.getConfigData();
-    if(_response.hasError) {
-      ApiChecker.checkApi(_response);
-    }else {
-      //Get.showSnackbar(GetBar(title: 'response', message: '${_response.body}'));
-     _configModel =  ConfigModel.fromJson(_response.body);
-     update();
-
+    if(_response.statusCode == 200){
+      _configModel =  ConfigModel.fromJson(_response.body);
     }
+   else {
+     print(_response);
+     ApiChecker.checkApi(_response);
+   }
+    update();
     return _response;
+
   }
 
   Future<bool> initSharedData() {

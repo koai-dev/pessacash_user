@@ -264,5 +264,14 @@
   "must_use_country_code": "Must use country code",
   "update_bank_info": "Update Bank Info",
   "agent_method": "Agent Near You (Handover)",
-  "bank_method": "Internet Banking"
+  "bank_method": "Internet Banking",
+  "by_proceeding_you": "By proceeding you agree to our ",
+  "if_you_allow_contact_permission": "If you Allow contact permission, you can transaction easily",
+  "contact_permission": "Contact permission",
+  "payment": "Payment",
+  "request_status": "Request Status",
+  "withdraw_history": "Withdraw History",
+  "pending_balance": "Pending Balance",
+  "sent": "Sent",
+  "withdraw_req": "Withdraw Req."
 }

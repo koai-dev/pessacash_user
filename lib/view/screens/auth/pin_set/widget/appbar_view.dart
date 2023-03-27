@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:six_cash/controller/localization_controller.dart';
 import 'package:six_cash/helper/route_helper.dart';
+import 'package:six_cash/util/app_constants.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/base/custom_logo.dart';
 
@@ -27,7 +29,7 @@ class AppbarView extends StatelessWidget {
           isLogin
               ? RoundedButton(onTap: (){
             Get.toNamed(RouteHelper.getChoseLanguageRoute());
-          }, buttonText:   'language'.tr,)
+          }, buttonText: AppConstants.languages[Get.find<LocalizationController>().selectedIndex].languageName,)
           : Container(),
         ],
       ),

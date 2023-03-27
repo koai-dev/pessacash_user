@@ -10,6 +10,7 @@ import 'package:six_cash/data/api/api_client.dart';
 import 'package:six_cash/data/model/body/signup_body.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
+import 'package:six_cash/view/base/custom_country_code_picker.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/screens/auth/pin_set/widget/appbar_view.dart';
 import 'package:six_cash/view/screens/auth/pin_set/widget/pin_view.dart';
@@ -80,8 +81,9 @@ class PinSetScreen extends StatelessWidget {
                       String _occupation =  occupation;
                       String _fName =  fName;
                       String _lName =  lName;
-                      String _email =  /*email=='' ? null :*/ email;
-                      String _phoneNumber =  Get.find<CreateAccountController>().phoneNumber;
+                      String _email = email;
+                      String _countryCode = getCountryCode(Get.find<CreateAccountController>().phoneNumber);
+                      String _phoneNumber = Get.find<CreateAccountController>().phoneNumber.replaceAll(_countryCode, '');
                       File _image =  Get.find<CameraScreenController>().getImage;
                       String _otp =  Get.find<VerificationController>().otp;
 
@@ -94,6 +96,7 @@ class PinSetScreen extends StatelessWidget {
                         phone: _phoneNumber,
                         otp: _otp,
                         password: _password,
+                        dialCountryCode: _countryCode
                       );
 
                       MultipartBody multipartBody = MultipartBody('image',_image );

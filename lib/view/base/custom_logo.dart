@@ -4,7 +4,7 @@ import 'package:six_cash/util/images.dart';
 
 class CustomLogo extends StatelessWidget {
   final double height,width;
-   CustomLogo({
+  CustomLogo({
     this.height,this.width
   });
 
@@ -13,12 +13,8 @@ class CustomLogo extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        image: DecorationImage(
-          image: AssetImage(Images.logo),
-        ),
-      ),
+      child: Image.asset(Images.logo),
+
     );
   }
 }

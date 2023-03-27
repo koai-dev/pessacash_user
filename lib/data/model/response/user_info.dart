@@ -27,6 +27,9 @@ class UserInfo {
     this.uniqueId,
     this.qrCode,
     this.kycStatus,
+    this.pendingBalance,
+    this.pendingWithdrawCount
+
   });
 
   String fName;
@@ -43,6 +46,8 @@ class UserInfo {
   String uniqueId;
   String qrCode;
   KycVerification kycStatus;
+  double pendingBalance;
+  int pendingWithdrawCount;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
     fName: json["f_name"],
@@ -59,6 +64,8 @@ class UserInfo {
     uniqueId: json["unique_id"],
     qrCode: json["qr_code"],
     kycStatus:  _getStatusType('${json['is_kyc_verified']}'),
+    pendingBalance: json["pending_balance"] != null ? json["pending_balance"].toDouble() : 0,
+    pendingWithdrawCount: json["pending_withdraw_count"] != null ? int.parse(json["pending_withdraw_count"].toString()): 0
   );
 
 

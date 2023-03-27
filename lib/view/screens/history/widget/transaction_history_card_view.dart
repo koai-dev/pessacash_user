@@ -25,8 +25,6 @@ class TransactionHistoryCardView extends StatelessWidget {
         || transactions.transactionType == TransactionType.CASH_OUT;
 
     try{
-      // _userName = transactions.userInfo.name ?? '';
-      // _userPhone = transactions.userInfo.phone ?? '';
 
       _userPhone = transactions.transactionType == AppConstants.SEND_MONEY
           ? transactions.receiver.phone : transactions.transactionType == AppConstants.RECEIVED_MONEY
@@ -45,12 +43,6 @@ class TransactionHistoryCardView extends StatelessWidget {
      _userPhone = 'no_user'.tr;
      _userName = 'no_user'.tr;
     }
-    String _imageLogo = transactions.transactionType == AppConstants.SEND_MONEY
-        ? Images.send_money_image : transactions.transactionType == AppConstants.RECEIVED_MONEY
-        ? Images.requestMoney_logo : transactions.transactionType == AppConstants.ADD_MONEY
-        ? Images.addMoneyLogo3 : transactions.transactionType == AppConstants.CASH_OUT
-        ? Images.cashOut_logo : transactions.transactionType == AppConstants.WITHDRAW
-        ? Images.withdraw : Images.send_money_image;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
@@ -64,7 +56,9 @@ class TransactionHistoryCardView extends StatelessWidget {
                 Container(
                   height: 50,width: 50,
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(_imageLogo),
+                  child: transactions.transactionType == null
+                      ? SizedBox()
+                      : Image.asset(Images.getTransactionImage(transactions.transactionType)),
                 ),
 
                 SizedBox(width: 5,),
@@ -100,7 +94,7 @@ class TransactionHistoryCardView extends StatelessWidget {
                 Spacer(),
 
                 Text(
-                  '${_isCredit ? '-' : '+'} ${PriceConverter.convertPriceLocal(double.parse(transactions.amount.toString()))}',
+                  '${_isCredit ? '-' : '+'} ${PriceConverter.convertPrice(double.parse(transactions.amount.toString()))}',
                   style: rubikMedium.copyWith(
                     fontSize: Dimensions.FONT_SIZE_DEFAULT,
                     color: _isCredit ? Colors.redAccent : Colors.green,
@@ -142,3 +136,4 @@ class TransactionHistoryCardView extends StatelessWidget {
     );
   }
 }
+

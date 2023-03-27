@@ -5,14 +5,15 @@ import 'package:six_cash/data/model/response/on_boarding_model.dart';
 import 'images.dart';
 
 class AppConstants {
-  static const String APP_NAME = 'RBPESSACASH';
+  static const String APP_NAME = 'TestCash';
   //demo
-
-  static const String BASE_URL = 'https://rbpessacash.com';
+  static const String BASE_URL = 'https://6cash-admin.6amtech.com';
+  //
+  // static const String BASE_URL = 'https://6cash-admin.6am.one';
   // //fun
   // static const String BASE_URL = 'https://6cash-admin.6am.fun';
   static const bool DEMO = true;
-   static const double APP_VERSION = 2.0;
+   static const double APP_VERSION = 2.1;
 
   static const String CUSTOMER_PHONE_CHECK_URI = '/api/v1/customer/auth/check-phone';
   static const String CUSTOMER_PHONE_RESEND_OTP_URI = '/api/v1/customer/auth/resend-otp';
@@ -54,6 +55,7 @@ class AppConstants {
   static const String UPDATE_KYC_INFORMATION = '/api/v1/customer/update-kyc-information';
   static const String WITHDRAW_METHOD_LIST = '/api/v1/customer/withdrawal-methods';
   static const String WITHDRAW_REQUEST = '/api/v1/customer/withdraw';
+  static const String GET_WITHDRAWAL_REQUEST = '/api/v1/customer/withdrawal-requests';
 
 
   // Shared Key
@@ -86,9 +88,11 @@ class AppConstants {
   static const String ADMIN_CHARGE = 'admin_charge';
   static const String ADD_MONEY = 'add_money';
   static const String WITHDRAW = 'withdraw';
+  static const String PAYMENT = 'payment';
 
   static const String BIOMETRIC_AUTH = 'biometric_auth';
   static const String BIOMETRIC_PIN = 'biometric';
+  static const String CONTACT_PERMISSION = '';
 
 
   //topic
@@ -106,8 +110,7 @@ class AppConstants {
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: Images.english, languageName: 'English', countryCode: 'US', languageCode: 'en'),
     LanguageModel(imageUrl: Images.saudi, languageName: 'Arabic', countryCode: 'SA', languageCode: 'ar'),
-    LanguageModel(imageUrl: Images.burundi, languageName: 'Ikirundi', countryCode: 'BI', languageCode: 'rn'),
-    LanguageModel(imageUrl: Images.ghana, languageName: 'Swahili', countryCode: 'TZ', languageCode: 'sw'),
+
   ];
 
   static  List<OnboardModel> onboardList = [

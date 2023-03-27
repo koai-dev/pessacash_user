@@ -182,15 +182,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           child: Row(
                             children: [
-                              Expanded(
-                                child: CustomSmallButton(
-                                  onTap: () => Get.toNamed(RouteHelper.getBankScreen(from: 'edit')),
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  text: 'update_bank_info'.tr,
-                                  textColor: Colors.white,
-                                ),
-                              ),
+                              // Expanded(
+                              //   child: CustomSmallButton(
+                              //     onTap: () => Get.toNamed(RouteHelper.getBankScreen(from: 'edit')),
+                              //     backgroundColor:
+                              //         Theme.of(context).primaryColor,
+                              //     text: 'update_bank_info'.tr,
+                              //     textColor: Colors.white,
+                              //   ),
+                              // ),
                             ],
                           ),
                         )

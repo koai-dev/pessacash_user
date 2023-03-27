@@ -17,6 +17,7 @@ import 'package:six_cash/data/repository/transaction_repo.dart';
 import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/app_constants.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:six_cash/view/base/logout_dialog.dart';
 import 'package:six_cash/view/screens/transaction_money/transaction_money_balance_input.dart';
 import 'package:six_cash/view/screens/transaction_money/transaction_money_confirmation.dart';
 
@@ -125,30 +126,65 @@ class TransactionMoneyController extends GetxController implements GetxService {
 
 
   Future<void> fetchContact() async {
-      _contactIsLoading = true;
-      List<Contact> contacts = [];
-      permissionStatus = await Permission.contacts.request();
-      if(permissionStatus == PermissionStatus.granted || GetPlatform.isIOS) {
-        contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: false);
-        update();
-      }
+    _contactIsLoading = true;
+    String _permissionStatus =  authRepo.sharedPreferences.getString(AppConstants.CONTACT_PERMISSION);
+    if(_permissionStatus != PermissionStatus.granted.name){
 
-      azItemList = contacts.map((contact) {
-       if (contact.phones.length != 0 && contact.displayName.isNotEmpty) {
-         return AzItem(contact: contact, tag: contact.displayName[0].toUpperCase());
-       }
-       return AzItem(contact: Contact(), tag: '');
-     }).toList();
+      return Get.dialog(
 
-      azItemList.removeWhere((element) => element.contact == Contact());
-      filterdContacts = azItemList;
-      SuspensionUtil.setShowSuspensionStatus(azItemList);
-      SuspensionUtil.setShowSuspensionStatus(filterdContacts);
-      _contactIsLoading = false;
-    update();
+        CustomDialog(
+          description: 'if_you_allow_contact_permission'.tr,
+          icon: Icons.question_mark,
+          onTapFalse:() {
+            _contactIsLoading = false;
+            Get.back();
+          } ,
+          onTapTrueText: 'accept'.tr,
+          onTapFalseText: 'deny'.tr,
+          onTapTrue: () {
+            Get.back();
+            _contactData();
+          } ,
+          title: 'contact_permission'.tr,
+
+        ),
+        barrierDismissible: false,
+
+      ).then((value) => _contactIsLoading = false);
+
+    }else{
+      _contactData();
+    }
 
   }
-  
+
+  void _contactData() async {
+    List<Contact> contacts = [];
+    permissionStatus = await Permission.contacts.request();
+    authRepo.sharedPreferences.setString(
+        AppConstants.CONTACT_PERMISSION, permissionStatus.name);
+    if (permissionStatus == PermissionStatus.granted || GetPlatform.isIOS) {
+      contacts =
+      await FlutterContacts.getContacts(withProperties: true, withPhoto: false);
+      update();
+    }
+
+    azItemList = contacts.map((contact) {
+      if (contact.phones.length != 0 && contact.displayName.isNotEmpty) {
+        return AzItem(
+            contact: contact, tag: contact.displayName[0].toUpperCase());
+      }
+      return AzItem(contact: Contact(), tag: '');
+    }).toList();
+
+    azItemList.removeWhere((element) => element.contact == Contact());
+    filterdContacts = azItemList;
+    SuspensionUtil.setShowSuspensionStatus(azItemList);
+    SuspensionUtil.setShowSuspensionStatus(filterdContacts);
+    _contactIsLoading = false;
+    update();
+  }
+
   void searchContact({@required String searchTerm}) {
     if (searchTerm.isNotEmpty) {
       filterdContacts = azItemList.where((element) {
@@ -293,42 +329,40 @@ class TransactionMoneyController extends GetxController implements GetxService {
   void setContactModel(ContactModel contactModel){
     _contact = contactModel;
   }
- 
+
   void  contactOnTap(int index, String transactionType){
     String phoneNumber = filterdContacts[index].contact.phones.first.number.trim();
     print(filterdContacts[index].contact.name.first);
     if(phoneNumber.contains('-')){
       phoneNumber = phoneNumber.replaceAll('-', '');
     }
-    if(!phoneNumber.contains(Get.find<AuthController>().getCustomerCountryCode())){
+    if(!phoneNumber.contains('+')){
       phoneNumber = Get.find<AuthController>().getCustomerCountryCode()+phoneNumber.substring(1).trim();
     }
     if(phoneNumber.contains(' ')){
       phoneNumber = phoneNumber.replaceAll(' ', '');
     }
+    if(transactionType == "cash_out"){
+      Get.find<TransactionMoneyController>().checkAgentNumber(phoneNumber: phoneNumber).then((value) {
+        if(value.isOk){
+          String _agentName = value.body['data']['name'];
+          String _agentImage = value.body['data']['image'];
 
-    print(phoneNumber);
-
-
-      if(transactionType == "cash_out"){
-        Get.find<TransactionMoneyController>().checkAgentNumber(phoneNumber: phoneNumber).then((value) {
-          if(value.isOk){
-            String _agentName = value.body['data']['name'];
-            String _agentImage = value.body['data']['image'];
-            Get.to(()=> TransactionMoneyBalanceInput(transactionType: transactionType,contactModel: ContactModel(phoneNumber: phoneNumber,name: _agentName,avatarImage: _agentImage)));
-          }
-        });
-      }else{
-        Get.find<TransactionMoneyController>().checkCustomerNumber(phoneNumber: phoneNumber).then((value) {
-          if(value.isOk){
-            String _customerName = value.body['data']['name'];
-            String _customerImage = value.body['data']['image'];
-            Get.to(()=> TransactionMoneyBalanceInput(transactionType: transactionType,contactModel: ContactModel(phoneNumber: phoneNumber,name: _customerName,avatarImage: _customerImage)));
-          }
-        });
-      }
-
+          print('phone number contact ---- $phoneNumber');
+          Get.to(()=> TransactionMoneyBalanceInput(transactionType: transactionType,contactModel: ContactModel(phoneNumber: phoneNumber,name: _agentName,avatarImage: _agentImage)));
+        }
+      });
+    }else{
+      Get.find<TransactionMoneyController>().checkCustomerNumber(phoneNumber: phoneNumber).then((value) {
+        print('phone number contact ---- $phoneNumber');
+        if(value.isOk){
+          String _customerName = value.body['data']['name'];
+          String _customerImage = value.body['data']['image'];
+          Get.to(()=> TransactionMoneyBalanceInput(transactionType: transactionType,contactModel: ContactModel(phoneNumber: phoneNumber,name: _customerName,avatarImage: _customerImage)));
+        }
+      });
     }
+  }
 
   void suggestOnTap(int index, String transactionType){
     if(transactionType == 'send_money'){

@@ -10,6 +10,7 @@ class SignUpBody {
   String otp;
   String gender;
   String occupation;
+  String dialCountryCode;
 
   SignUpBody({
     @required this.fName,
@@ -19,7 +20,8 @@ class SignUpBody {
     @required this.password,
     this.otp,
     @required this.gender,
-    @required this.occupation
+    @required this.occupation,
+    @required this.dialCountryCode,
   });
 
   SignUpBody.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class SignUpBody {
     otp = json['otp'];
     gender = json['gender'];
     occupation = json['occupation'];
+    dialCountryCode = json['dial_country_code'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +46,7 @@ class SignUpBody {
     data['otp'] = this.otp;
     data['gender'] = this.gender;
     data['occupation'] = this.occupation;
+    data['dial_country_code'] = this.dialCountryCode;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -8,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:six_cash/data/api/api_client.dart';
 import 'package:six_cash/util/app_constants.dart';
+
+import '../../view/base/custom_country_code_picker.dart';
 
 class AuthRepo extends GetxService{
    final ApiClient apiClient;
@@ -29,7 +32,8 @@ class AuthRepo extends GetxService{
      return await apiClient.postMultipartData(AppConstants.CUSTOMER_REGISTRATION_URI, customerInfo,multipartBody);
    }
    Future<Response> login({String phone, String password}) async {
-     return await apiClient.postData(AppConstants.CUSTOMER_LOGIN_URI, {"phone": phone, "password": password});
+    String _countryCode = getCountryCode(phone);
+     return await apiClient.postData(AppConstants.CUSTOMER_LOGIN_URI, {"phone": phone.replaceAll(_countryCode, ''), "password": password, "dial_country_code": getCountryCode(phone)});
    }
    Future<Response> deleteUser() async {
      return await apiClient.deleteData(AppConstants.CUSTOMER_REMOVE);

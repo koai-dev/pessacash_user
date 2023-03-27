@@ -63,6 +63,7 @@ class GenderView extends StatelessWidget {
                       onTap: ()=> fromEditProfile ? editProfileController.setGender('Male') : profileController.setGender('Male'),
                     ),
                     const SizedBox(width: Dimensions.PADDING_SIZE_SMALL,),
+
                      CustomGenderCard(
                       icon: Images.female,
                       text: 'female'.tr,

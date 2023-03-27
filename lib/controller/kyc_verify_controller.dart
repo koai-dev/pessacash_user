@@ -12,7 +12,6 @@ class KycVerifyController extends GetxController implements GetxService{
   final KycVerifyRepo kycVerifyRepo;
   KycVerifyController({@required this.kycVerifyRepo});
   List <XFile> _imageFile;
-  List <XFile> get imageFile => _imageFile;
   List <XFile>_identityImage = [];
   List<XFile> get identityImage => _identityImage;
 

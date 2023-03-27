@@ -40,7 +40,7 @@ class LanguageWidget extends StatelessWidget {
                   border: Border.all(color: Theme.of(context).textTheme.bodyText1.color, width: 1),
                 ),
                 alignment: Alignment.center,
-                child: Image.asset(languageModel.imageUrl, width: 36, height: 36,color: Get.isDarkMode? Colors.white: Theme.of(context).primaryColor,),
+                child: Image.asset(languageModel.imageUrl, width: 36, height: 36),
               ),
               SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
               Text(languageModel.languageName, style: rubikMedium.copyWith(color: Theme.of(context).textTheme.titleLarge.color)),

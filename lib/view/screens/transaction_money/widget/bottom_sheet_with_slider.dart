@@ -16,6 +16,7 @@ import 'package:lottie/lottie.dart';
 import 'package:six_cash/view/base/custom_ink_well.dart';
 import 'package:slide_to_confirm/slide_to_confirm.dart';
 
+import '../../../../util/currency/currency.dart';
 import 'avator_section.dart';
 
 class BottomSheetWithSlider extends StatefulWidget {
@@ -31,7 +32,64 @@ class BottomSheetWithSlider extends StatefulWidget {
 }
 
 class _BottomSheetWithSliderState extends State<BottomSheetWithSlider> {
-  String transactionId ;
+  String transactionId;
+  String currencyAmount = "";
+
+  Future<void> checkCurrencyAmount(
+      double cashOutCharge, ProfileController profileController) async {
+    if ((await PriceConverter.currencyChange(profileController.userInfo.phone))
+            .type !=
+        Currency.USD) {
+      if (widget.transactionType == "request_money") {
+        final amount = PriceConverter.newBalanceWithCredit(
+            inputBalance: double.parse(widget.amount));
+        PriceConverter.convertCurrency(
+                double.parse(amount.replaceAll(RegExp('[^0-9 .]'), '')),
+                profileController.userInfo.phone)
+            .then((value) async {
+          if (value.symbol ==
+              (await PriceConverter.currencyChange(
+                      profileController.userInfo.phone))
+                  .symbol) {
+            currencyAmount =
+                " = ${await PriceConverter.convertPrice(value.amount, profileController: profileController, isLocal: true)}";
+          }
+          setState(() {});
+        });
+      } else if (widget.transactionType == "send_money") {
+        final amount = (PriceConverter.newBalanceWithDebit(
+          inputBalance: double.parse(widget.amount),
+          charge: double.parse(Get.find<SplashController>()
+              .configModel
+              .sendMoneyChargeFlat
+              .toString()),
+        )).replaceAll(RegExp('[^0-9 .]'), '');
+        print("Amount: $amount");
+        final currency = (await PriceConverter.convertCurrency(
+            double.parse(amount), profileController.userInfo.phone));
+
+        currencyAmount = " = " +
+            await PriceConverter.convertPrice(currency.amount,
+                profileController: profileController, isLocal: true);
+        setState(() {});
+      } else {
+        final amount = PriceConverter.newBalanceWithDebit(
+          inputBalance: double.parse(widget.amount),
+          charge: cashOutCharge,
+        ).replaceAll(RegExp('[^0-9 .]'), '');
+        final currency = await PriceConverter.convertCurrency(
+            double.parse(amount), profileController.userInfo.phone);
+        if (currency.symbol ==
+            (await PriceConverter.currencyChange(
+                    profileController.userInfo.phone))
+                .symbol) {
+          currencyAmount =
+              " ~ ${await PriceConverter.convertPrice(currency.amount, isLocal: true, profileController: profileController)}";
+        }
+        setState(() {});
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -125,16 +183,13 @@ class _BottomSheetWithSliderState extends State<BottomSheetWithSlider> {
 
                       GetBuilder<ProfileController>(
                         builder: (profileController) {
+                          checkCurrencyAmount(cashOutCharge, profileController);
                           return profileController.isLoading ? SizedBox() : Text(
-                            'new_balance'.tr+' '+'${widget.transactionType == 'request_money'
-                                ? PriceConverter.newBalanceWithCredit(inputBalance: double.parse(widget.amount))
-                                : PriceConverter.newBalanceWithDebit(inputBalance: double.parse(widget.amount),
-
-                                charge: widget.transactionType=='send_money'
-                                    ? double.parse(Get.find<SplashController>().configModel.sendMoneyChargeFlat.toString())
-                                    : cashOutCharge)}',
-
-                            style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT),
+                            'new_balance'.tr +
+                                ' ' +
+                                '${widget.transactionType == 'request_money' ? PriceConverter.newBalanceWithCredit(inputBalance: double.parse(widget.amount)) + "$currencyAmount" : PriceConverter.newBalanceWithDebit(inputBalance: double.parse(widget.amount), charge: widget.transactionType == 'send_money' ? double.parse(Get.find<SplashController>().configModel.sendMoneyChargeFlat.toString()) : cashOutCharge) + "$currencyAmount"}',
+                            style: rubikRegular.copyWith(
+                                fontSize: Dimensions.FONT_SIZE_DEFAULT),
                           );
                         }
                       ),

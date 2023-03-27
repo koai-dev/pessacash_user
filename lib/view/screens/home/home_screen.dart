@@ -2,6 +2,7 @@
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:six_cash/controller/banner_controller.dart';
 import 'package:six_cash/controller/home_controller.dart';
 import 'package:six_cash/controller/notification_controller.dart';
@@ -39,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
     Get.find<WebsiteLinkController>().getWebsiteList();
     Get.find<NotificationController>().getNotificationList();
     Get.find<TransactionMoneyController>().getPurposeList();
-    Get.find<TransactionMoneyController>().fetchContact();
+    if(Get.find<TransactionMoneyController>().permissionStatus == PermissionStatus.granted) {
+      Get.find<TransactionMoneyController>().fetchContact();
+    }
     Get.find<TransactionMoneyController>().getWithdrawMethods(isReload: reload);
     Get.find<RequestedMoneyController>().getWithdrawHistoryList();
 

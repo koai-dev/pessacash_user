@@ -264,5 +264,14 @@
   "must_use_country_code": "Ugomba gukoresha kode yigihugu",
   "update_bank_info": "Hindira ibitambulisho vya konti yawe",
   "agent_method": "Agent Akwegereye(Ihana hana bubasha)",
-  "bank_method": "Gukoresha Icarata Yibanki"
+  "bank_method": "Gukoresha Icarata Yibanki",
+  "by_proceeding_you":"Ugiye Kubandanya",
+  "if_you_allow_contact_permission":"  Ugiye gutanga uruhusha mugitabu ",
+  "contact_permission": "Uruhusha Rwigitabu ",
+  "payment": "Kuriha",
+  "request_status": "Baza Status",
+  "withdraw_history": "Akahise Ko Kubikura",
+  "pending_balance": "Amafaranga Arindirijwe",
+  "sent": "vyemejwe canke yarungitswe",
+  "withdraw_req": " Gusaba Kubikura "
 }

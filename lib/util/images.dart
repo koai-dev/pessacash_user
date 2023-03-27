@@ -2,6 +2,9 @@ class Images {
   // static const String logo = 'assets/image/logo.png';
   static const String saudi = 'assets/image/arabic.png';
   static const String english = 'assets/image/english.png';
+  static const String burundi = 'assets/image/burundi.png';
+  static const String ghana = 'assets/image/ghana.png';
+
 
   //
    static const String logo = 'assets/image/logo.png';

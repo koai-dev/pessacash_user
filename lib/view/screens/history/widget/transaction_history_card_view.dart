@@ -94,7 +94,7 @@ class TransactionHistoryCardView extends StatelessWidget {
                 Spacer(),
 
                 Text(
-                  '${_isCredit ? '-' : '+'} ${PriceConverter.convertPrice(double.parse(transactions.amount.toString()))}',
+                  '${_isCredit ? '-' : '+'} ${PriceConverter.convertPriceLocal(double.parse(transactions.amount.toString()))}',
                   style: rubikMedium.copyWith(
                     fontSize: Dimensions.FONT_SIZE_DEFAULT,
                     color: _isCredit ? Colors.redAccent : Colors.green,

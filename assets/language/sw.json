@@ -264,5 +264,14 @@
   "must_use_country_code": "Lazima utumie msimbo wa nchi",
   "update_bank_info": "Sasisha Maelezo ya Benki",
   "agent_method": "Wakala Karibu Nawe (Kukabidhi)",
-  "bank_method": "Benki ya Mtandaoni"
+  "bank_method": "Benki ya Mtandaoni",
+  "by_proceeding_you": "kwa kuendelea unakubali",
+  "if_you_allow_contact_permission": "ukiruhusu ruhusa ya muunganisho, unaweza kushughulikia kwa urahisi",
+  "contact_permission": "ruhusa ya muunganisho",
+  "payment": "Malipo",
+  "request_status": "hali ya ombi",
+  "withdraw_history": "vuta historia",
+  "pending_balance": "salio linalosubiri",
+  "sent": "imetumwa",
+  "withdraw_req": "ondoa ombi."
 }
